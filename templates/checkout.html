@@ -1,0 +1,33 @@
+{% extends 'base.html' %} {% block title%} Checkout {% endblock %} {% block
+content %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CHECKOUT</title>
+  </head>
+  <body>
+    <h1>CHECKOUT</h1>
+    <ul>
+      {% for product in cart %}
+        <li>
+          <h3>{{product.name}}</h3>
+          <p>Price: ${{ product.price }}</p>
+          <p>Quantity: {{quantity}}</p>
+          <!-- <form action="/remove_item" method="post">
+            <input type="hidden" name="index" value="{{index}}">
+            <button type="submit">Remove</button>
+          </form> -->
+          <form action="/checkout" method="post">
+            <input type="hidden" name="item_id" value="{{product_id}}">
+            <input type="number" name="quantity" value="1" min="1">
+            <button type="submit">Add More</button>
+          </form>
+        </li>
+      {% endfor %}
+    </ul>
+    <h2>Total Price: ${{ total_price }}</h2>
+  </body>
+</html>
+{% endblock %}

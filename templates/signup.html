@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title%} 
+Signup Page 
+{% endblock %} 
+
+{% block content%} 
+<h2>Sign up to create an Account</h2>
+<form action="/signup" method="post">
+    <label for="username">Username</label>
+   <input type= "text" name="username" id="username" required>
+   <br>
+   <label for="password">Password</label>
+   <input type="password" name="password" id="password" required>
+   <br>
+   <button type="submit">Signup</button>
+</form>
+<br>
+
+<p>Have an account already?<a href="{{ url_for('login_page') }}">
+    <button type="submit">Login here</button></a></p>
+{% endblock %}

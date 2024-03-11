@@ -1,0 +1,59 @@
+{% extends 'base.html' %} {% block title%} Shop Page {% endblock %} {% block
+content%}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SHOP</title>
+  </head>
+  <body>
+    <style>
+      .shopContainer {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-gap: 5px;
+      }
+
+      .itemContainer {
+        border: 1px solid#ddd;
+        margin: 10px;
+        padding: 10px;
+        width: 200px;
+        height: 400px;
+
+        text-align: center;
+      }
+
+      .itemContainer img {
+        width: 100%;
+        height: 150px;
+      }
+
+      .itemContainer button {
+        margin: 5px;
+      }
+    </style>
+
+    <h2>WELCOME TO MY SHOP PAGE</h2>
+
+    <div class="shopContainer">
+      {% for product_id,product in products.items() %}
+      <div class="itemContainer">
+        <img src="{{product.img}}" alt="{{product.name}}" />
+        <h3 class="itemName">{{product.name}}</h3>
+        <p class="itemPrice">$ {{product.price}}</p>
+
+        <form action="/checkout" method="post">
+          <input type="hidden" name="item_id" value="{{ product_id }}">
+          <button type="submit">ADD TO CART</button>
+        </form>
+      </div>
+
+      {% endfor %}
+    </div>
+  </body>
+</html>
+
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title%} 
+HomePage 
+{% endblock %} 
+
+{% block content%}
+<h1> Welcome to my Shopping Website</h1>
+  {% if current_user.is_authenticated %} 
+     Hello, {{current_user.username}}
+    <a href="{{url_for('logout')}}">logout</a>
+  {% else %}
+    <p>You are not logged in</p>
+    <a href="{{url_for('login_page')}}">login</a>
+  {% endif %}
+{% endblock %}
